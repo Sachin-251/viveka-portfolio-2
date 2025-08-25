@@ -3,17 +3,18 @@ import { notFound } from 'next/navigation'
 import BlogCard from '@/components/blog-card'
 import Link from 'next/link'
 import { getPostsByCategory, getAllPosts } from '@/lib/sanity'
+import { Post } from '@/lib/types'
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
   try {
     const posts = await getAllPosts()
-    const categories = [...new Set(posts.map((post: any) => post.category))] as string[]
+    const categories = [...new Set(posts.map((post: Post) => post.category))] as string[]
     
     return categories.map((category: string) => ({
       slug: category.toLowerCase().replace(/\s+/g, '-'),
@@ -25,7 +26,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const categorySlug = params.slug
+  const { slug: categorySlug } = await params
   const categoryName = categorySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 
   return {
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const categorySlug = params.slug
+  const { slug: categorySlug } = await params
   let posts = []
 
   try {
@@ -76,7 +77,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post: any, index: number) => (
+          {posts.map((post: Post, index: number) => (
             <BlogCard 
               key={post._id} 
               post={post} 

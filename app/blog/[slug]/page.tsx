@@ -4,19 +4,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
 import { getPostBySlug, getAllPosts } from '@/lib/sanity'
-import { urlFor } from '@/lib/sanityImage'
 import { Facebook, Linkedin, Twitter } from 'lucide-react'
+import { Post } from '@/lib/types'
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
   try {
     const posts = await getAllPosts()
-    return posts.map((post: any) => ({
+    return posts.map((post: Post) => ({
       slug: post.slug.current,
     }))
   } catch (error) {

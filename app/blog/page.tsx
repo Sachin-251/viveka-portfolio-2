@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import BlogCard from '@/components/blog-card'
 import { getAllPosts } from '@/lib/sanity'
+import { Post } from '@/lib/types'
 
 export const metadata: Metadata = {
   title: 'Blog - Content Writing & Marketing Insights',
@@ -35,7 +36,7 @@ export default async function BlogPage() {
 
         {posts.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post: any, index: number) => (
+            {posts.map((post: Post, index: number) => (
               <BlogCard 
                 key={post._id} 
                 post={post} 

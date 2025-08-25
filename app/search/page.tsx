@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import BlogCard from '@/components/blog-card'
 import { Input } from '@/components/ui/input'
@@ -21,7 +21,7 @@ interface SearchResult {
   mainImage: string
 }
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q') || ''
   const [searchTerm, setSearchTerm] = useState(query)
@@ -174,5 +174,22 @@ export default function SearchPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 py-20">
+          <div className="text-center py-20">
+            <div className="text-2xl mb-4">🔍</div>
+            <p className="text-gray-600 dark:text-gray-300">Loading search...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <SearchPageContent />
+    </Suspense>
   )
 }

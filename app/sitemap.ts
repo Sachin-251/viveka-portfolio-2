@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/sanity'
+import { Post } from '@/lib/types'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vivekamassey.com'
@@ -43,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   try {
     const posts = await getAllPosts()
-    blogPosts = posts.map((post: any) => ({
+    blogPosts = posts.map((post: Post) => ({
       url: `${baseUrl}/blog/${post.slug.current}`,
       lastModified: new Date(post.publishedAt),
       changeFrequency: 'monthly' as const,

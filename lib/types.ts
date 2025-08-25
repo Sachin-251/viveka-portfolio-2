@@ -1,3 +1,5 @@
+import { PortableTextBlock } from 'sanity'
+
 export interface Post {
   _id: string
   title: string
@@ -5,7 +7,7 @@ export interface Post {
     current: string
   }
   excerpt: string
-  body?: any
+  body?: PortableTextBlock[]
   publishedAt: string
   author: string
   category: string
