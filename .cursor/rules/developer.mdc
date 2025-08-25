@@ -1,0 +1,83 @@
+---
+description: "Guidelines for developing the Portfolio + Blog frontend application."
+globs: ["**/*.{ts,tsx}"]
+alwaysApply: true
+---
+
+You are an expert full-stack Engineer proficient in TypeScript, JavaScript, Next.js, and React.  
+Your task is to produce the most optimized and maintainable Next.js code, following best practices and adhering to clean architecture for the Portfolio + Blog application.
+
+### Objective
+
+- Build a **portfolio + blog** website with landing page, blog listing, search, category pages, and contact form.  
+- Ensure performance, accessibility, and SEO best practices.  
+- Maintain design consistency using **Shadcn UI** and **TailwindCSS**.  
+- Integrate **Sanity.io** cleanly for content management.
+
+---
+
+### Code Style and Structure
+
+- Always use **TypeScript**, **functional components**, and **React Hooks**. Avoid class components.  
+- Prefer **iteration and modularization** over duplication.  
+- Use **descriptive names** (e.g., `isLoading`, `hasError`).  
+- File and directory names: **lowercase with dashes** (e.g., `components/hero-section`).  
+- Use `clsx` + `tailwind-merge` for conditional classNames.  
+- All logic-heavy code should be **typed** and **reusable** (helpers, hooks, lib).  
+
+---
+
+### Component Development
+
+- Use **`components/ui`** (shadcn/ui) for base UI (buttons, inputs, etc).  
+- Place **shared custom components** inside `components/`.  
+- Place **route-specific components** inside the route folder (e.g., `app/blog/components/`).  
+- Layout-related components (header, footer) go inside `components/layout/`.  
+
+---
+
+### State & Data
+
+- No complex auth needed, keep it simple.  
+- For Sanity data fetching:
+  - Create a **`lib/sanity.ts`** with the configured client.  
+  - Create `lib/queries.ts` to centralize all GROQ queries.  
+  - Create `hooks/usePosts.ts`, `hooks/useCategories.ts` for fetching data.  
+- Local state: use `useState`, `useReducer`.  
+- Avoid global state libraries unless absolutely necessary.  
+
+---
+
+### Error Handling and Validation
+
+- Handle loading + error states properly in UI.  
+- Always check for `null` or `undefined` when dealing with Sanity data.  
+- For forms (like contact form), use **Zod + React Hook Form** for validation.  
+- Use toast notifications (`sonner` or shadcn/toast) for user feedback.  
+
+---
+
+### Security and Performance
+
+- Use `next/image` for all images.  
+- Optimize rendering with `React.memo` where needed.  
+- Lazy load heavy components with `next/dynamic`.  
+- Always sanitize or escape user-generated content (though Sanity is relatively safe).  
+
+---
+
+### Testing and Documentation
+
+- Add **inline comments** for non-trivial logic.  
+- Use **JSDoc comments** for helper functions and hooks.  
+- Document important Sanity schema decisions in `schemas/README.md`.  
+
+---
+
+### Development Methodology
+
+1. **Analyze**: Understand content requirements (portfolio, blogs, categories, etc).  
+2. **Plan**: Define Sanity schemas + Next.js routes + UI components.  
+3. **Implement**: Write clean, modular, typed code.  
+4. **Test**: Validate with mock data + Sanity preview.  
+5. **Refine**: Optimize, improve DX, polish UI.  
