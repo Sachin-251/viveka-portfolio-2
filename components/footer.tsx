@@ -21,33 +21,33 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 dark:bg-black text-white">
-      <div className="container mx-auto px-4 md:px-16 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {/* Brand */}
-          <div className="md:col-span-2">
-                       <Link href="/" className="text-3xl font-bold text-white hover:text-blue-400 transition-colors">
-             Viveka Massey
-           </Link>
-              <p className="mt-4 text-gray-300 leading-relaxed max-w-md">
-               Professional content writer and copywriter passionate about creating engaging, SEO-optimized content that connects with audiences and drives results. 
-               Let&apos;s work together to tell your story.
-             </p>
+          <div className="sm:col-span-2">
+            <Link href="/" className="text-2xl sm:text-3xl font-bold text-white hover:text-blue-400 transition-colors">
+              Viveka Massey
+            </Link>
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-300 leading-relaxed max-w-md">
+              Professional content writer and copywriter passionate about creating engaging, SEO-optimized content that connects with audiences and drives results. 
+              Let&apos;s work together to tell your story.
+            </p>
             
             {/* Social Links */}
-            <div className="mt-6 flex space-x-4">
+            <div className="mt-6 sm:mt-8 flex space-x-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  className="text-gray-300 hover:text-blue-400 transition-colors p-2"
                   aria-label={social.name}
                 >
                   {social.icon === 'linkedin' ? (
-                    <Linkedin size={24} />
+                    <Linkedin size={20} className="sm:w-6 sm:h-6" />
                   ) : social.icon === 'twitter' ? (
-                    <Twitter size={24} />
+                    <Twitter size={20} className="sm:w-6 sm:h-6" />
                   ) : null}
                 </a>
               ))}
@@ -56,13 +56,13 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Quick Links</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-blue-400 transition-colors">
+                    className="text-sm sm:text-base text-gray-300 hover:text-blue-400 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -72,25 +72,34 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <div className="space-y-2 text-gray-300">
-              <p>📍 India</p>
-              <p>📧 rebekah.251@outlook.com</p>
-              <p>⏰ 24/7</p>
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Contact</h3>
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-300">
+              <p className="flex items-center gap-2">
+                <span>📍</span>
+                <span>India</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span>📧</span>
+                <span>rebekah.251@outlook.com</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span>⏰</span>
+                <span>24/7</span>
+              </p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-8 sm:pt-12 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+          <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
             © {currentYear} Viveka. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-gray-400 hover:text-blue-400 text-sm transition-colors">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <Link href="/privacy" className="text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-gray-400 hover:text-blue-400 text-sm transition-colors">
+            <Link href="/terms" className="text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition-colors">
               Terms of Service
             </Link>
           </div>

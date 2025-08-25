@@ -78,44 +78,44 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <article className="container mx-auto px-4 py-20 max-w-4xl">
+      <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 max-w-4xl">
         {/* Header */}
-        <header className="mb-12">
-          <div className="flex items-center gap-2 mb-4">
+        <header className="mb-8 sm:mb-12">
+          <div className="flex items-center gap-2 mb-4 sm:mb-6">
             <Link 
               href="/blog"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-blue-600 dark:text-blue-400 hover:underline text-sm sm:text-base"
             >
               ← Back to Blog
             </Link>
           </div>
           
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 px-3 py-1 rounded-full">
+          <div className="flex flex-wrap items-center gap-2 mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 px-2 sm:px-3 py-1 sm:py-2 rounded-full">
               {post.category}
             </span>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
+            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
               {new Date(post.publishedAt).toLocaleDateString()}
             </span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
             {post.title}
           </h1>
           
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
             {post.excerpt}
           </p>
           
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base">
               {post.author.charAt(0).toUpperCase()}
             </div>
             <div>
-              <p className="font-semibold text-gray-900 dark:text-white">
+              <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                 {post.author}
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                 Author
               </p>
             </div>
@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Featured Image */}
         {post.mainImage && (
-          <div className="relative w-full h-64 md:h-96 mb-12 rounded-lg overflow-hidden">
+          <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96 mb-8 sm:mb-12 rounded-lg overflow-hidden">
             <Image
               src={post.mainImage}
               alt={post.title}
@@ -136,30 +136,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         )}
 
         {/* Content */}
-        <div className="prose prose-lg dark:prose-invert max-w-none">
+        <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none">
           {post.body ? (
             <div className="text-gray-700 dark:text-gray-300 leading-relaxed">
               <PortableText 
                 value={post.body}
                 components={{
                   block: {
-                    h1: ({children}) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
-                    h2: ({children}) => <h2 className="text-2xl font-bold mb-3">{children}</h2>,
-                    h3: ({children}) => <h3 className="text-xl font-bold mb-2">{children}</h3>,
-                    normal: ({children}) => <p className="mb-4 leading-relaxed">{children}</p>,
+                    h1: ({children}) => <h1 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{children}</h1>,
+                    h2: ({children}) => <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">{children}</h2>,
+                    h3: ({children}) => <h3 className="text-lg sm:text-xl font-bold mb-2">{children}</h3>,
+                    normal: ({children}) => <p className="mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">{children}</p>,
                   },
                   list: {
-                    bullet: ({children}) => <ul className="list-disc list-inside mb-4 space-y-1">{children}</ul>,
-                    number: ({children}) => <ol className="list-decimal list-inside mb-4 space-y-1">{children}</ol>,
+                    bullet: ({children}) => <ul className="list-disc list-inside mb-3 sm:mb-4 space-y-1">{children}</ul>,
+                    number: ({children}) => <ol className="list-decimal list-inside mb-3 sm:mb-4 space-y-1">{children}</ol>,
                   },
-                  listItem: ({children}) => <li className="ml-4">{children}</li>,
+                  listItem: ({children}) => <li className="ml-2 sm:ml-4 text-sm sm:text-base">{children}</li>,
                 }}
               />
             </div>
           ) : (
-            <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <div className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               <p>{post.excerpt}</p>
-              <p className="mt-6">
+              <p className="mt-4 sm:mt-6">
                 This is a placeholder for the full blog post content. The actual content would 
                 be fetched from Sanity CMS and rendered here.
               </p>
@@ -168,43 +168,43 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-500 dark:text-gray-400">
+        <footer className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                 Share this post:
               </span>
-              <div className="flex gap-2">
+              <div className="flex gap-3 sm:gap-2">
                 <a
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug.current}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors p-1"
                 >
-                  <Twitter size={24} />
+                  <Twitter size={20} className="sm:w-6 sm:h-6" />
                 </a>
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug.current}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors p-1"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={20} className="sm:w-6 sm:h-6" />
                 </a>
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug.current}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors p-1"
                 >
-                  <Facebook size={24} />
+                  <Facebook size={20} className="sm:w-6 sm:h-6" />
                 </a>
               </div>
             </div>
             
             <Link 
               href="/blog"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-blue-600 dark:text-blue-400 hover:underline text-sm sm:text-base"
             >
               ← Back to Blog
             </Link>

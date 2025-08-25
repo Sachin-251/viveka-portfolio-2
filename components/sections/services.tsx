@@ -46,45 +46,45 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
   const displayServices = services.length > 0 ? services : defaultServices
 
   return (
-    <section id="services" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 md:px-16">
+    <section id="services" className="py-16 sm:py-20 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
             Services I Offer
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
             I provide comprehensive content writing and copywriting services to help your brand connect with its audience
           </p>
         </motion.div>
 
-        <AnimatedList className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
+        <AnimatedList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" staggerDelay={0.1}>
           {displayServices.map((service, index) => (
             <AnimatedItem key={index}>
               <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Card className="hover:shadow-lg transition-shadow duration-300 h-full">
-                  <CardHeader>
+                <Card className="hover:shadow-lg transition-shadow duration-300 h-full p-6 sm:p-8">
+                  <CardHeader className="pb-4 sm:pb-6">
                     <motion.div 
-                      className="text-4xl mb-4"
+                      className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
                       {service.icon}
                     </motion.div>
-                    <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
+                    <CardTitle className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <CardContent className="pt-0">
+                    <CardDescription className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                       {service.description}
                     </CardDescription>
                   </CardContent>

@@ -57,26 +57,26 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-20">
-        <div className="mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="mb-6 sm:mb-8">
           <Link 
             href="/blog"
-            className="text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-blue-600 dark:text-blue-400 hover:underline text-sm sm:text-base"
           >
             ← Back to Blog
           </Link>
         </div>
 
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
             {categoryName}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
             {posts.length} post{posts.length !== 1 ? 's' : ''} in this category
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {posts.map((post: Post, index: number) => (
             <BlogCard 
               key={post._id} 
@@ -86,10 +86,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 sm:mt-16 text-center">
           <Link 
             href="/blog"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
           >
             View All Posts
           </Link>

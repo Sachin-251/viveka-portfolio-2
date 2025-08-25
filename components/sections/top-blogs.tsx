@@ -13,131 +13,112 @@ interface TopBlogsSectionProps {
 }
 
 export default function TopBlogsSection({ posts }: TopBlogsSectionProps) {
-  const defaultPosts: Post[] = [
-    {
-      _id: '1',
-      title: '10 Content Writing Tips to Boost Your SEO Rankings',
-      slug: { current: 'content-writing-tips-seo-rankings' },
-      excerpt: 'Discover proven content writing strategies that will help improve your search engine rankings and drive more organic traffic to your website.',
-      publishedAt: '2024-01-15',
-      author: 'Viveka Massey',
-      category: 'Content Writing',
-      mainImage: '/api/placeholder/400/250'
-    },
-    {
-      _id: '2',
-      title: 'The Art of Storytelling in Marketing Copy',
-      slug: { current: 'storytelling-marketing-copy' },
-      excerpt: 'Learn how to weave compelling narratives into your marketing copy to connect with audiences and drive conversions.',
-      publishedAt: '2024-01-10',
-      author: 'Viveka Massey',
-      category: 'Copywriting',
-      mainImage: '/api/placeholder/400/250'
-    },
-    {
-      _id: '3',
-      title: 'Creating Engaging Email Marketing Campaigns',
-      slug: { current: 'engaging-email-marketing-campaigns' },
-      excerpt: 'Master the art of writing email campaigns that capture attention, nurture relationships, and drive action.',
-      publishedAt: '2024-01-05',
-      author: 'Viveka Massey',
-      category: 'Email Marketing',
-      mainImage: '/api/placeholder/400/250'
-    }
-  ]
-
-  const displayPosts = posts.length > 0 ? posts : defaultPosts
+  const displayPosts = posts.slice(0, 3)
 
   return (
-    <section id="blog" className="py-20 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-4 md:px-16">
+    <section className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Blog Posts
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+            Latest Blog Posts
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Personal Reflections, Creative Ideas, and Everything in Between
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
+            Read my latest thoughts on content writing, marketing, and digital strategy
           </p>
         </motion.div>
 
-        <AnimatedList className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
-          {displayPosts.map((post) => (
-            <AnimatedItem key={post._id}>
-              <motion.div
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    {post.mainImage ? (
-                      <Image
-                        src={post.mainImage}
-                        alt={post.title}
-                        fill
-                        unoptimized
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-green-400 to-blue-600 flex items-center justify-center">
-                        <div className="text-white text-center">
-                          <div className="text-4xl mb-2">📝</div>
-                          <p className="text-sm">Blog Image</p>
+        {displayPosts.length > 0 ? (
+          <AnimatedList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" staggerDelay={0.1}>
+            {displayPosts.map((post, index) => (
+              <AnimatedItem key={post._id}>
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
+                    <div className="relative overflow-hidden h-40 sm:h-48 lg:h-56">
+                      {post.mainImage ? (
+                        <Image
+                          src={post.mainImage}
+                          alt={post.title}
+                          fill
+                          unoptimized
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-green-400 to-blue-600 flex items-center justify-center">
+                          <div className="text-white text-center">
+                            <div className="text-2xl sm:text-3xl lg:text-4xl mb-1 sm:mb-2">📝</div>
+                            <p className="text-xs sm:text-sm">Blog Image</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full">
-                        {post.category}
-                      </span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                        {new Date(post.publishedAt).toLocaleDateString()}
-                      </span>
+                      )}
                     </div>
-                    <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
-                      {post.title}
-                    </CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
-                      {post.excerpt}
-                    </CardDescription>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        By {post.author}
-                      </span>
-                      <Button size="sm" variant="outline" asChild>
-                        <Link href={`/blog/${post.slug.current}`}>
-                          Read More
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </AnimatedItem>
-          ))}
-        </AnimatedList>
+                    <CardHeader className="p-4 sm:p-6">
+                      <div className="flex flex-wrap items-center gap-2 mb-2 sm:mb-3">
+                        <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full">
+                          {post.category}
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {new Date(post.publishedAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <CardTitle className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-base sm:text-lg lg:text-xl line-clamp-2 leading-tight">
+                        {post.title}
+                      </CardTitle>
+                    </CardHeader>
+                    
+                    <CardContent className="p-4 sm:p-6 pt-0 space-y-4 sm:space-y-6">
+                      <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2 sm:line-clamp-3 text-sm sm:text-base">
+                        {post.excerpt}
+                      </CardDescription>
+                      
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+                        <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          By {post.author}
+                        </span>
+                        <Button size="sm" variant="outline" asChild className="w-full sm:w-auto text-xs sm:text-sm">
+                          <Link href={`/blog/${post.slug.current}`}>
+                            Read More
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </AnimatedItem>
+            ))}
+          </AnimatedList>
+        ) : (
+          <div className="text-center py-16 sm:py-20">
+            <div className="text-4xl sm:text-6xl mb-4 sm:mb-6">📝</div>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-4">
+              No posts yet
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
+              Check back soon for new content!
+            </p>
+          </div>
+        )}
 
         <motion.div 
-          className="text-center mt-12"
+          className="text-center mt-12 sm:mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Button size="lg" variant="outline">
-            <Link href="/blog">View All Posts</Link>
+          <Button size="lg" variant="outline" asChild className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4">
+            <Link href="/blog">
+              View All Posts
+            </Link>
           </Button>
         </motion.div>
       </div>

@@ -68,39 +68,39 @@ function SearchPageContent() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-20">
-        <div className="mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="mb-6 sm:mb-8">
           <Link 
             href="/blog"
-            className="text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-blue-600 dark:text-blue-400 hover:underline text-sm sm:text-base"
           >
             ← Back to Blog
           </Link>
         </div>
 
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
             Search Blog
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
             Find the content you&apos;re looking for
           </p>
         </div>
 
         {/* Search Form */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <form onSubmit={handleSearch} className="flex gap-4">
+        <div className="max-w-2xl mx-auto mb-12 sm:mb-16">
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 sm:h-5 sm:w-5" />
               <Input
                 type="text"
                 placeholder="Search for posts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 h-12 sm:h-14 text-base"
               />
             </div>
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="h-12 sm:h-14 text-base">
               {isLoading ? 'Searching...' : 'Search'}
             </Button>
           </form>
@@ -110,22 +110,22 @@ function SearchPageContent() {
         {hasSearched && (
           <div>
             {isLoading ? (
-              <div className="text-center py-20">
-                <div className="text-2xl mb-4">🔍</div>
-                <p className="text-gray-600 dark:text-gray-300">Searching...</p>
+              <div className="text-center py-16 sm:py-20">
+                <div className="text-2xl sm:text-4xl mb-4 sm:mb-6">🔍</div>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Searching...</p>
               </div>
             ) : results.length > 0 ? (
               <div>
-                <div className="mb-8">
-                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                <div className="mb-8 sm:mb-12">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-4">
                     Search Results
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
                     Found {results.length} result{results.length !== 1 ? 's' : ''} for &quot;{query}&quot;
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                   {results.map((post, index) => (
                     <BlogCard 
                       key={post._id} 
@@ -136,21 +136,21 @@ function SearchPageContent() {
                 </div>
               </div>
             ) : (
-              <div className="text-center py-20">
-                <div className="text-6xl mb-4">🔍</div>
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+              <div className="text-center py-16 sm:py-20">
+                <div className="text-4xl sm:text-6xl mb-4 sm:mb-6">🔍</div>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-4">
                   No results found
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
                   No posts found for &quot;{query}&quot;
                 </p>
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     Try searching with different keywords or browse all posts:
                   </p>
                   <Link 
                     href="/blog"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
                   >
                     View All Posts
                   </Link>
@@ -162,12 +162,12 @@ function SearchPageContent() {
 
         {/* Initial State */}
         {!hasSearched && !query && (
-          <div className="text-center py-20">
-            <div className="text-6xl mb-4">🔍</div>
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+          <div className="text-center py-16 sm:py-20">
+            <div className="text-4xl sm:text-6xl mb-4 sm:mb-6">🔍</div>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-4">
               Start searching
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
               Enter a search term above to find blog posts
             </p>
           </div>
@@ -181,10 +181,10 @@ export default function SearchPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4 py-20">
-          <div className="text-center py-20">
-            <div className="text-2xl mb-4">🔍</div>
-            <p className="text-gray-600 dark:text-gray-300">Loading search...</p>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div className="text-center py-16 sm:py-20">
+            <div className="text-2xl sm:text-4xl mb-4 sm:mb-6">🔍</div>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Loading search...</p>
           </div>
         </div>
       </div>
