@@ -91,12 +91,12 @@ export default function HeroSection({ hero }: HeroSectionProps) {
               </motion.div>
             ) : (
               <motion.div 
-                className="relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] flex items-center justify-center"
+                className="relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] flex items-center justify-center shadow-2xl shadow-fuchsia-700"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 {/* Gradient border circle for placeholder */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 p-1 sm:p-2">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 p-1 sm:p-2 shadow-2xl shadow-fuchsia-700">
                   <div className="w-full h-full rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center">
                     <div className="text-gray-600 dark:text-gray-300 text-center">
                       <div className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl mb-2 sm:mb-4">👨‍💻</div>

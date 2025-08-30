@@ -69,8 +69,9 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
               <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
+                className="h-full"
               >
-                <Card className="hover:shadow-lg transition-shadow duration-300 h-full p-6 sm:p-8">
+                <Card className="hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
                   <CardHeader className="pb-4 sm:pb-6">
                     <motion.div 
                       className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6"
@@ -83,8 +84,8 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
                       {service.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0">
-                    <CardDescription className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <CardContent className="pt-0 flex-1 flex flex-col">
+                    <CardDescription className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed flex-1">
                       {service.description}
                     </CardDescription>
                   </CardContent>
